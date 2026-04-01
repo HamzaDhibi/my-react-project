@@ -1,34 +1,55 @@
-const courseTitle = "Advanced Web Development";
+// Data Structure Comment:
+// objectID should be used as the React key because it's unique
+// This structure is realistic for an API like Hacker News
+
+const stories = [
+  {
+    objectID: 1,
+    title: "React Official Documentation",
+    url: "https://react.dev",
+    author: "Meta",
+    points: 312,
+    num_comments: 45,
+  },
+  {
+    objectID: 2,
+    title: "Vite - Next Generation Frontend Tooling",
+    url: "https://vitejs.dev",
+    author: "Evan You",
+    points: 254,
+    num_comments: 32,
+  },
+  {
+    objectID: 3,
+    title: "JavaScript MDN Web Docs",
+    url: "https://developer.mozilla.org",
+    author: "Mozilla",
+    points: 400,
+    num_comments: 60,
+  },
+];
 
 function App() {
-  const studentName = "Hamza";
-
-  const student = {
-    name: "Hamza",
-    age: 22,
-    track: "Web Development"
-  };
-
-  function sayHello() {
-    return `Hello, ${studentName}!`;
-  }
-
   return (
     <div>
-      <h1>My First React Component</h1>
-      <p>Student Name: {studentName}</p>
-      <p>Welcome to {courseTitle}, {studentName}!</p>
-      <label htmlFor="input">Enter something: </label>
-      <input type="text" id="input" />
-      <p>Name: {student.name}</p>
-      <p>Age: {student.age}</p>
-      <p>Track: {student.track}</p>
-      <p>{sayHello()}</p>
+      <h1>Hacker News Stories</h1>
+      {stories.map((story) => (
+        <div key={story.objectID}>
+          <h3>
+            <a href={story.url} target="_blank" rel="noreferrer">
+              {story.title}
+            </a>
+          </h3>
+          <p>Author: <span>{story.author}</span></p>
+          <p>Points: <span>{story.points}</span></p>
+          <p>Comments: <span>{story.num_comments}</span></p>
+        </div>
+      ))}
 
       {/* Reflection */}
-      {/* 1. I understand how JSX works and how to display variables */}
-      {/* 2. I'm still getting used to the difference between {} and without */}
-      {/* 3. I forgot to use htmlFor instead of for on the label */}
+      {/* 1. map() is essential because it transforms each item into JSX */}
+      {/* 2. objectID is the correct key because it's unique and stable */}
+      {/* 3. When using the API, stories will come from a fetch call instead of a hardcoded array */}
     </div>
   );
 }
