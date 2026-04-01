@@ -1,7 +1,3 @@
-// Data Structure Comment:
-// objectID should be used as the React key because it's unique
-// This structure is realistic for an API like Hacker News
-
 const stories = [
   {
     objectID: 1,
@@ -29,10 +25,22 @@ const stories = [
   },
 ];
 
-function App() {
+function Header() {
+  return <h1>Hacker News</h1>;
+}
+
+function Search() {
   return (
     <div>
-      <h1>Hacker News Stories</h1>
+      <label htmlFor="search">Search: </label>
+      <input type="text" id="search" />
+    </div>
+  );
+}
+
+function List() {
+  return (
+    <div>
       {stories.map((story) => (
         <div key={story.objectID}>
           <h3>
@@ -45,11 +53,22 @@ function App() {
           <p>Comments: <span>{story.num_comments}</span></p>
         </div>
       ))}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <Header />
+      <Search />
+      <List />
 
       {/* Reflection */}
-      {/* 1. map() is essential because it transforms each item into JSX */}
-      {/* 2. objectID is the correct key because it's unique and stable */}
-      {/* 3. When using the API, stories will come from a fetch call instead of a hardcoded array */}
+      {/* 1. App is the root component that assembles everything */}
+      {/* 2. List is responsible for rendering the stories */}
+      {/* 3. Search is responsible for the search input UI */}
+      {/* 4. This structure is cleaner because each component has one job */}
     </div>
   );
 }
